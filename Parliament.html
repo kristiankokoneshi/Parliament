@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Virtual Parliament: 77 MPs</title>
+    <style>
+        .mp-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr); /* Change 6 to however many columns you want */
+            gap: 1em;
+        }
+        .mp-box {
+            border: 2px solid black;
+            text-align: center;
+            vertical-align: middle;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Virtual Parliament</h1>
+
+<p>Present: <span id="present-count">0</span></p>
+<p>Absent: <span id="absent-count">78</span></p>
+
+<div id="mps-container" class="mp-grid">
+    <!-- MPs will be added here dynamically -->
+</div>
+
+<script>
+    let presentCount = 0;
+    let absentCount = 77;
+
+    const mpNames = [
+    'Lindita Nikolla', 'Taulant Balla', 'Belinda Balluku', 'Edi Rama', 'Elisa Spiropali','Ulsi Manja',
+    'Ogerta Manasterliu', 'Anila Denaj','Mirela Kumbaro','Niko Peleshi','Jurgis Cyrbja','Aurora Mara',
+    'Gerta Duraku','Enslemvera Zake','Klotidla Bushka','Ermonela Felaj','Fatmir Xhafaj','Eduart Ndreca','Klevis Xhoxhi',
+    'Damian Gjiknuri','Saimir Hasalla','Eduard Shalsi','Blerina Gjylameti','Erion Brace','Antoneta Dhima','Milva Ekonomi',
+    'Vullnet Sinaj','Pranvera Resulaj','Anduel Tahiraj','Alban Xhelili','Bledar Cuci','Toni Gogu','Etilda Gjonaj',
+    'Pandeli Majko','Mimi Kodheli','Etjen Xhafaj','Blendi Klosi','Lavdrim Krrashi','Ornaldo Rakipi','Nasip Naco',
+    'Xhemal Qefalia','Bardhyl Kollcaku','Luan Duzha','Denis Deliu','Agron Cela','Ilir Topi','Paulin Sterkaj',
+    'Arben Pellumbi','Laert Duraj','Fadil Nasufi','Baftjar Zeqaj','Tatiana Piro','Luljeta Bozo','Edona Bilali',
+    'Arkend Balla','Petro Koci','Desantila Tahiraj','Hatixhe Konomi','Olta Xhacka','Teuta Tamaj','Lindita Buxheli',
+    'Ismet Beqiraj','Ilir Ndraxhi','Klodiana Spahiu','Ilirjan Pendavinji','Mirela Pitushi','Shpresa Marnoj',
+    'Niko Kuri','Florenc Spaho','Ilir Metaj','Bujar Cela','Frrok Gjini','Shkelqim Bullari','Meri Merkici',
+    'Gertjan Deda','Gledis Celiku','Evis Kushi'
+];
+
+
+    const container = document.getElementById('mps-container');
+
+    mpNames.forEach(name => {
+        const box = document.createElement('div');
+        box.className = 'mp-box';
+        box.textContent = name;
+        box.addEventListener('click', function() {
+            if (box.style.backgroundColor === 'green') {
+                box.style.backgroundColor = 'white';
+                presentCount--;
+                absentCount++;
+            } else {
+                box.style.backgroundColor = 'green';
+                presentCount++;
+                absentCount--;
+            }
+            document.getElementById('present-count').textContent = presentCount;
+            document.getElementById('absent-count').textContent = absentCount;
+        });
+        container.appendChild(box);
+    });
+</script>
+
+</body>
+</html>
